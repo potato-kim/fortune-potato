@@ -12,7 +12,13 @@ export async function GET(req: Request) {
     console.log(`[Top API] Fetching potatoes sorted by: ${sort} (raw: ${rawSort})`);
 
     const potatoes = await prisma.potato.findMany({
-      orderBy: sort === 'recent' ? { createdAt: 'desc' } : { likes: 'desc' },
+      orderBy: sort === 'recent' 
+        ? [{ createdAt: 'desc' }] 
+        : [
+            { likes: 'desc' },
+            { commentsCount: 'desc' }, // Use the performance-optimized field already in schema
+            { createdAt: 'desc' }
+          ],
       take: 20,
     })
     
