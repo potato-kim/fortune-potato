@@ -90,13 +90,13 @@ export default function PotatoDetail() {
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('링크가 복사되었습니다!');
+    alert('감자가 복사되었습니다!');
   };
 
   if (isLoading) return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
       <div className="text-6xl animate-spin-slow">🥔</div>
-      <p className="text-sm font-bold text-potato-subtext uppercase tracking-widest">Loading Potato</p>
+      <p className="text-sm font-bold text-potato-subtext uppercase tracking-widest">감자 쌓는중...</p>
     </div>
   );
 
@@ -107,7 +107,7 @@ export default function PotatoDetail() {
       </Link>
 
       {/* Main Card */}
-      <motion.div 
+      <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         className="potato-card rounded-[40px] p-12 bg-white shadow-2xl space-y-12"
@@ -121,14 +121,14 @@ export default function PotatoDetail() {
         </div>
 
         <div className="flex gap-4 pt-6">
-          <button 
+          <button
             onClick={handleLike}
             disabled={isLiking}
             className={`potato-button-ghost flex-1 gap-2 ${potato?.likes > 0 ? 'text-red-500 bg-red-50' : 'text-potato-subtext'}`}
           >
             <Heart size={20} fill={potato?.likes > 0 ? "currentColor" : "none"} /> {potato?.likes || 0}
           </button>
-          <button 
+          <button
             onClick={handleShare}
             className="potato-button-ghost flex-1 gap-2 text-potato-subtext"
           >
@@ -142,18 +142,18 @@ export default function PotatoDetail() {
         <h2 className="text-2xl font-bold text-potato-title px-2 flex items-center gap-2">
           <MessageCircle size={22} /> 댓글 {(potato?.comments || []).length}
         </h2>
-        
+
         <form onSubmit={handleComment} className="potato-card p-10 bg-white space-y-6">
           <div className="grid grid-cols-2 gap-4">
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="닉네임"
               value={commentName}
               onChange={(e) => setCommentName(e.target.value)}
               className="potato-input h-12"
             />
-            <input 
-              type="password" 
+            <input
+              type="password"
               placeholder="비밀번호"
               value={commentPassword}
               onChange={(e) => setCommentPassword(e.target.value)}
@@ -161,13 +161,13 @@ export default function PotatoDetail() {
             />
           </div>
           <div className="relative">
-            <textarea 
+            <textarea
               placeholder="따뜻한 감자 한 마디..."
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               className="potato-input min-h-[100px] pr-14 resize-none h-24"
             />
-            <button 
+            <button
               type="submit"
               className="absolute right-3 bottom-3 p-3 bg-potato-title text-white rounded-xl hover:opacity-90 active:scale-95 transition-all"
             >
@@ -179,7 +179,7 @@ export default function PotatoDetail() {
         {/* Comment List */}
         <div className="space-y-4">
           {potato.comments.map((comment: any) => (
-            <motion.div 
+            <motion.div
               key={comment.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -194,7 +194,7 @@ export default function PotatoDetail() {
                 </div>
                 <p className="text-potato-subtext font-medium leading-relaxed">{comment.content}</p>
               </div>
-              <button 
+              <button
                 onClick={() => handleDeleteComment(comment.id)}
                 className="p-2 text-potato-subtext/20 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
               >
